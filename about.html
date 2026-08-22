@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — DECIPHART</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cinzel', serif;
+            background-color: #0c0f0e;
+            color: #F1F5F9;
+            line-height: 1.8;
+            padding-top: 90px;
+            background-image: radial-gradient(circle at 50% 0%, #151c19 0%, #0c0f0e 70%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* NAVIGATION TOP */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(12, 15, 14, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(229, 184, 105, 0.4);
+            z-index: 9999;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: #F1F5F9;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #E5B869;
+            text-shadow: 0 0 10px rgba(229, 184, 105, 0.6);
+        }
+
+        /* SECTION ABOUT */
+        .about-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .profile-card {
+            background: linear-gradient(145deg, #161F1B 0%, #101614 100%);
+            border: 1px solid rgba(229, 184, 105, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .profile-img-wrapper {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #E5B869;
+            box-shadow: 0 0 25px rgba(229, 184, 105, 0.3);
+        }
+
+        .profile-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            color: #E2E8F0;
+            letter-spacing: 1.5px;
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 2;
+        }
+
+        /* LECTEUR AUDIO CACHÉ */
+        .audio-player-hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(40, 54, 47, 0.6);
+            margin-top: 40px;
+        }
+
+        .copyright {
+            color: #64748B;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="index.html#gallery" class="nav-link">Gallery</a>
+            <a href="index.html#muse" class="nav-link">Muse</a>
+            <a href="index.html#melodies" class="nav-link">Melodies</a>
+            <a href="index.html#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="about-container">
+        <div class="profile-card">
+            <div class="profile-img-wrapper">
+                <!-- Assure-toi d'ajouter l'image 'profile.jpg' dans ton dossier images -->
+                <img src="images/profile.jpg" alt="Nosakhare">
+            </div>
+            <p class="about-text">
+                "Hi my name is Nosakhare, welcome to my open codex. I seek to express visions beneath the clamor of a restless world. I have made a covenant to never betray the truth I find within this sacred endeavour"
+            </p>
+        </div>
+    </main>
+
+    <!-- Intégration YouTube en arrière-plan pour la musique "Fly" de Ludovico Einaudi -->
+    <div class="audio-player-hidden">
+        <iframe src="https://www.youtube.com/embed/3e2o1B745zM?autoplay=1&loop=1&playlist=3e2o1B745zM" allow="autoplay"></iframe>
+    </div>
+
+    <footer>
+        <div class="copyright">
+            &copy; 2026 DECIPHART — All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
