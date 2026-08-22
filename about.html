@@ -19,7 +19,7 @@
             background-color: #0c0f0e;
             color: #F1F5F9;
             line-height: 1.8;
-            padding-top: 90px;
+            padding-top: 110px;
             background-image: radial-gradient(circle at 50% 0%, #151c19 0%, #0c0f0e 70%);
             background-attachment: fixed;
             min-height: 100vh;
@@ -28,7 +28,6 @@
             justify-content: space-between;
         }
 
-        /* NAVIGATION TOP */
         .top-nav {
             position: fixed;
             top: 0;
@@ -67,36 +66,71 @@
             text-shadow: 0 0 10px rgba(229, 184, 105, 0.6);
         }
 
-        /* SECTION ABOUT */
-        .about-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            text-align: center;
+        .about-wrapper {
+            max-width: 1100px;
+            margin: 20px auto 60px auto;
+            padding: 0 25px;
+            width: 100%;
         }
 
         .profile-card {
-            background: linear-gradient(145deg, #161F1B 0%, #101614 100%);
-            border: 1px solid rgba(229, 184, 105, 0.4);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-        }
-
-        .profile-img-wrapper {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px auto;
-            border-radius: 50%;
+            background: linear-gradient(145deg, #121815 0%, #0a0d0c 100%);
+            border: 1px solid rgba(229, 184, 105, 0.25);
+            border-radius: 24px;
+            padding: 50px 60px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: row;
+            gap: 60px;
+            align-items: center;
+            position: relative;
             overflow: hidden;
-            border: 2px solid #E5B869;
-            box-shadow: 0 0 25px rgba(229, 184, 105, 0.3);
         }
 
-        .profile-img-wrapper img {
+        /* INTEGRATION PHOTO SANS BORDURE AVEC OMBRE DOREE */
+        .profile-img-container {
+            flex: 0 0 380px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .profile-img-container img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
+            /* Halo lumineux subtil autour du détourage */
+            filter: drop-shadow(0 10px 25px rgba(229, 184, 105, 0.25));
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+
+        .profile-img-container img:hover {
+            filter: drop-shadow(0 15px 35px rgba(229, 184, 105, 0.4));
+            transform: scale(1.02);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            color: #FFFFFF;
+            letter-spacing: 5px;
+            margin-bottom: 25px;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #E5B869;
         }
 
         .about-text {
@@ -104,26 +138,84 @@
             color: #E2E8F0;
             letter-spacing: 1.5px;
             font-style: italic;
-            margin-bottom: 25px;
             line-height: 2;
+            margin-bottom: 35px;
         }
 
-        /* LECTEUR AUDIO CACHÉ */
-        .audio-player-hidden {
-            display: none;
+        /* BOUTON LECTEUR MUSIC */
+        .audio-btn {
+            background: rgba(229, 184, 105, 0.1);
+            border: 1px solid #E5B869;
+            color: #E5B869;
+            padding: 12px 28px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .audio-btn:hover {
+            background: #E5B869;
+            color: #0c0f0e;
+            box-shadow: 0 0 20px rgba(229, 184, 105, 0.4);
+        }
+
+        /* IFRAME CACHEE POUR YOUTUBE AUDIO */
+        .youtube-hidden {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 0;
+            opacity: 0;
+            pointer-events: none;
         }
 
         footer {
             text-align: center;
             padding: 30px 20px;
             border-top: 1px solid rgba(40, 54, 47, 0.6);
-            margin-top: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .copyright {
             color: #64748B;
             font-size: 0.85rem;
             letter-spacing: 1px;
+        }
+
+        @media (max-width: 900px) {
+            .profile-card {
+                flex-direction: column;
+                gap: 40px;
+                padding: 40px 25px;
+            }
+            .profile-img-container {
+                flex: 0 0 auto;
+                max-width: 280px;
+            }
+            .about-title {
+                text-align: center;
+                font-size: 2rem;
+            }
+            .about-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .about-text {
+                text-align: center;
+                font-size: 1.05rem;
+            }
+            .about-content {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -140,28 +232,72 @@
         </div>
     </nav>
 
-    <main class="about-container">
+    <main class="about-wrapper">
         <div class="profile-card">
-            <div class="profile-img-wrapper">
-                <!-- Assure-toi d'ajouter l'image 'profile.jpg' dans ton dossier images -->
-                <img src="images/profile.webp" alt="Nosakhare">
+            <div class="profile-img-container">
+                <img src="images/autoportrait.webp" alt="Nosakhare">
             </div>
-            <p class="about-text">
-                "Hi my name is Nosakhare, welcome to my open codex. I seek to express visions beneath the clamor of a restless world. I have made a covenant to never betray the truth I find within this sacred endeavour"
-            </p>
+            <div class="about-content">
+                <h1 class="about-title">NOSAKHARE</h1>
+                <p class="about-text">
+                    "Hi my name is Nosakhare, welcome to my open codex. I seek to express visions beneath the clamor of a restless world. I have made a covenant to never betray the truth I find within this sacred endeavour"
+                </p>
+                <button class="audio-btn" id="musicToggle">
+                    <span>♫</span> <span id="musicText">Play Atmosphere</span>
+                </button>
+            </div>
         </div>
     </main>
 
-    <!-- Intégration YouTube en arrière-plan pour la musique "Fly" de Ludovico Einaudi -->
-    <div class="audio-player-hidden">
-        <iframe src="https://www.youtube.com/embed/3e2o1B745zM?autoplay=1&loop=1&playlist=3e2o1B745zM" allow="autoplay"></iframe>
-    </div>
+    <!-- Lecteur YouTube pour la musique Fly de Ludovico Einaudi -->
+    <div class="youtube-hidden" id="ytPlayerContainer"></div>
 
     <footer>
         <div class="copyright">
             &copy; 2026 DECIPHART — All rights reserved.
         </div>
     </footer>
+
+    <!-- Script API YouTube pour contrôle garanti de la musique -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        let isPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytPlayerContainer', {
+                height: '0',
+                width: '0',
+                videoId: '3e2o1B745zM', // Fly - Ludovico Einaudi
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': '3e2o1B745zM'
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            const btn = document.getElementById('musicToggle');
+            const btnText = document.getElementById('musicText');
+
+            btn.addEventListener('click', () => {
+                if (!isPlaying) {
+                    player.playVideo();
+                    btnText.textContent = "Pause Atmosphere";
+                    isPlaying = true;
+                } else {
+                    player.pauseVideo();
+                    btnText.textContent = "Play Atmosphere";
+                    isPlaying = false;
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
