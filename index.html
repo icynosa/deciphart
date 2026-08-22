@@ -39,13 +39,19 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(229, 184, 105, 0.4);
             z-index: 9999;
-            padding: 15px 0;
+            padding: 15px 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
-        .nav-container {
+        .nav-wrapper {
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -67,6 +73,17 @@
         .nav-link:hover {
             color: #E5B869;
             text-shadow: 0 0 10px rgba(229, 184, 105, 0.6);
+        }
+
+        /* BOUTON BURGER (CACHE SUR DESKTOP) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #E5B869;
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
         }
 
         header {
@@ -180,23 +197,6 @@
             font-style: italic;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
             opacity: 0.95;
-        }
-
-        @media (max-width: 850px) {
-            header h1 {
-                font-size: 2.3rem;
-                letter-spacing: 5px;
-            }
-            header h1 .title-cross {
-                font-size: 2.5rem;
-            }
-            .nav-container {
-                gap: 18px;
-            }
-            .nav-link {
-                font-size: 0.8rem;
-                letter-spacing: 1px;
-            }
         }
 
         h2.section-title {
@@ -605,20 +605,83 @@
             font-size: 0.85rem;
             letter-spacing: 1px;
         }
+
+        /* MEDIA QUERIES : OPTIMISATION MOBILE */
+        @media (max-width: 850px) {
+            body {
+                padding-top: 60px;
+            }
+
+            .nav-wrapper {
+                justify-content: flex-start;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(12, 15, 14, 0.98);
+                padding: 25px 0;
+                gap: 20px;
+                border-bottom: 1px solid rgba(229, 184, 105, 0.4);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+            }
+
+            .nav-container.active {
+                display: flex;
+            }
+
+            .nav-link {
+                font-size: 0.95rem;
+                letter-spacing: 2px;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+                letter-spacing: 4px;
+            }
+
+            header h1 .title-cross {
+                font-size: 2.4rem;
+            }
+
+            header p {
+                font-size: 0.95rem;
+                letter-spacing: 3px;
+            }
+
+            .section-slider-container {
+                height: 360px;
+            }
+
+            .media-container {
+                height: 360px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- BANDEROLE DE NAVIGATION -->
-<nav class="top-nav">
-    <div class="nav-container">
-        <a href="about.html" class="nav-link">About</a>
-        <a class="nav-link" onclick="window.navigateToSection('gallery')">Gallery</a>
-        <a class="nav-link" onclick="window.navigateToSection('muse')">Muse</a>
-        <a class="nav-link" onclick="window.navigateToSection('melodies')">Melodies</a>
-        <a href="#contact" class="nav-link">Contact</a>
-    </div>
-</nav>
+    <nav class="top-nav">
+        <div class="nav-wrapper">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
+            <div class="nav-container" id="navContainer">
+                <a href="about.html" class="nav-link">About</a>
+                <a class="nav-link" onclick="window.navigateToSection('gallery')">Gallery</a>
+                <a class="nav-link" onclick="window.navigateToSection('muse')">Muse</a>
+                <a class="nav-link" onclick="window.navigateToSection('melodies')">Melodies</a>
+                <a href="#contact" class="nav-link" onclick="window.closeMenuMobile()">Contact</a>
+            </div>
+        </div>
+    </nav>
 
     <header>
         <div class="header-bg-carousel" id="headerCarouselContainer">
@@ -849,6 +912,23 @@
     </div>
 
     <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navContainer = document.getElementById('navContainer');
+
+        if (menuToggle && navContainer) {
+            menuToggle.addEventListener('click', () => {
+                navContainer.classList.toggle('active');
+                menuToggle.textContent = navContainer.classList.contains('active') ? '✕' : '☰';
+            });
+        }
+
+        window.closeMenuMobile = function() {
+            if (navContainer && navContainer.classList.contains('active')) {
+                navContainer.classList.remove('active');
+                if (menuToggle) menuToggle.textContent = '☰';
+            }
+        };
+
         window.expandSection = function(sectionName) {
             const wrapper = document.getElementById(sectionName + 'CarouselWrapper');
             const grid = document.getElementById(sectionName + 'GridContainer');
@@ -880,6 +960,7 @@
         };
 
         window.navigateToSection = function(sectionName) {
+            window.closeMenuMobile();
             window.expandSection(sectionName);
             const targetElement = document.getElementById(sectionName);
             if (targetElement) {
