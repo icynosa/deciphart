@@ -24,23 +24,23 @@
             background-color: #0c0f0e;
             color: #F1F5F9;
             line-height: 1.7;
-            padding: 0 20px 20px 20px;
+            padding: 70px 20px 20px 20px; /* Espace ajouté en haut pour laisser la place à la barre fixe */
             background-image: radial-gradient(circle at 50% 0%, #151c19 0%, #0c0f0e 70%);
             background-attachment: fixed;
         }
 
-        /* BANNER NAVIGATION TOP */
+        /* BANNER NAVIGATION TOP FIXE */
         .top-nav {
-            position: sticky;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(12, 15, 14, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(229, 184, 105, 0.3);
-            z-index: 999;
+            background: rgba(12, 15, 14, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(229, 184, 105, 0.4);
+            z-index: 9999; /* Priorité d'affichage maximale */
             padding: 15px 0;
-            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .nav-container {
@@ -66,7 +66,7 @@
 
         .nav-link:hover {
             color: #E5B869;
-            text-shadow: 0 0 10px rgba(229, 184, 105, 0.5);
+            text-shadow: 0 0 10px rgba(229, 184, 105, 0.6);
         }
 
         header {
@@ -78,6 +78,7 @@
             margin-bottom: 50px;
             border-radius: 0 0 24px 24px;
             background-color: #000;
+            z-index: 1; /* z-index diminué pour éviter le chevauchement */
         }
 
         .header-bg-carousel {
@@ -123,13 +124,13 @@
             width: 100%;
             height: 100%;
             background: rgba(12, 15, 14, 0.45);
-            z-index: 3;
+            z-index: 2;
             pointer-events: none;
         }
 
         .header-content {
             position: relative;
-            z-index: 4;
+            z-index: 3;
         }
 
         .logo-container {
@@ -459,7 +460,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(6, 8, 7, 0.96);
-            z-index: 1000;
+            z-index: 10000;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -515,7 +516,7 @@
             font-size: 38px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 1001;
+            z-index: 10001;
             transition: color 0.3s ease;
         }
 
@@ -616,7 +617,7 @@
 </head>
 <body>
 
-    <!-- BANDEROLE DE NAVIGATION -->
+    <!-- BANDEROLE DE NAVIGATION (FIXEE EN HAUT DU DOM) -->
     <nav class="top-nav">
         <div class="nav-container">
             <a class="nav-link" onclick="window.navigateToSection('gallery')">Gallery</a>
@@ -885,7 +886,6 @@
             }, 50);
         };
 
-        // Navigation dynamique + Déploiement auto de la grille
         window.navigateToSection = function(sectionName) {
             window.expandSection(sectionName);
             const targetElement = document.getElementById(sectionName);
