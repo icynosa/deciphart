@@ -24,7 +24,7 @@
             background-color: #0c0f0e;
             color: #F1F5F9;
             line-height: 1.7;
-            padding: 70px 20px 20px 20px; /* Espace ajouté en haut pour laisser la place à la barre fixe */
+            padding: 70px 20px 20px 20px;
             background-image: radial-gradient(circle at 50% 0%, #151c19 0%, #0c0f0e 70%);
             background-attachment: fixed;
         }
@@ -38,7 +38,7 @@
             background: rgba(12, 15, 14, 0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(229, 184, 105, 0.4);
-            z-index: 9999; /* Priorité d'affichage maximale */
+            z-index: 9999;
             padding: 15px 0;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
@@ -78,7 +78,7 @@
             margin-bottom: 50px;
             border-radius: 0 0 24px 24px;
             background-color: #000;
-            z-index: 1; /* z-index diminué pour éviter le chevauchement */
+            z-index: 1;
         }
 
         .header-bg-carousel {
@@ -525,54 +525,46 @@
             text-shadow: 0 0 10px rgba(229, 184, 105, 0.6);
         }
 
+        /* SECTION CONTACT & FOOTER */
         #contact {
             text-align: center;
-            padding: 60px 20px;
+            padding: 60px 20px 30px 20px;
             max-width: 700px;
-            margin: 80px auto 40px auto;
+            margin: 60px auto 10px auto;
             scroll-margin-top: 90px;
         }
 
         #contact h2 {
             font-family: 'Cinzel', serif;
             font-size: 2.2rem;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             color: #FFFFFF;
             letter-spacing: 3px;
             font-weight: 700;
         }
 
-        #contact p {
-            color: #94A3B8;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-        }
-
-        .btn-contact {
+        .contact-email {
             display: inline-block;
-            padding: 15px 40px;
-            background-color: #E5B869;
-            color: #0C0F0E;
-            text-decoration: none;
             font-family: 'Cinzel', serif;
-            font-weight: 800;
+            font-size: 1.3rem;
+            color: #E5B869;
+            text-decoration: none;
             letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 40px;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(229, 184, 105, 0.25);
+            border-bottom: 1px solid rgba(229, 184, 105, 0.4);
+            padding-bottom: 4px;
         }
 
-        .btn-contact:hover {
-            background-color: #FFFFFF;
-            color: #0C0F0E;
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.35);
+        .contact-email:hover {
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+            text-shadow: 0 0 10px rgba(229, 184, 105, 0.6);
         }
 
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px 20px 40px 20px;
             border-top: 1px solid rgba(40, 54, 47, 0.6);
             max-width: 900px;
             margin: 0 auto;
@@ -617,7 +609,7 @@
 </head>
 <body>
 
-    <!-- BANDEROLE DE NAVIGATION (FIXEE EN HAUT DU DOM) -->
+    <!-- BANDEROLE DE NAVIGATION -->
     <nav class="top-nav">
         <div class="nav-container">
             <a class="nav-link" onclick="window.navigateToSection('gallery')">Gallery</a>
@@ -828,10 +820,10 @@
 
     </main>
 
+    <!-- SECTION CONTACT -->
     <section id="contact">
-        <h2>Get In Touch</h2>
-        <p>For inquiries, art acquisitions, or collaborations:</p>
-        <a href="mailto:deciphart@gmail.com" class="btn-contact">Contact Me</a>
+        <h2>CONTACT</h2>
+        <a href="mailto:deciphart@gmail.com" class="contact-email">deciphart@gmail.com</a>
     </section>
 
     <footer>
