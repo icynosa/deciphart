@@ -15,14 +15,58 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Cinzel', serif;
             background-color: #0c0f0e;
             color: #F1F5F9;
             line-height: 1.7;
-            padding: 20px;
+            padding: 0 20px 20px 20px;
             background-image: radial-gradient(circle at 50% 0%, #151c19 0%, #0c0f0e 70%);
             background-attachment: fixed;
+        }
+
+        /* BANNER NAVIGATION TOP */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(12, 15, 14, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 184, 105, 0.3);
+            z-index: 999;
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: #F1F5F9;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #E5B869;
+            text-shadow: 0 0 10px rgba(229, 184, 105, 0.5);
         }
 
         header {
@@ -36,7 +80,6 @@
             background-color: #000;
         }
 
-        /* Conteneur de la vidéo unique en arrière-plan avec effet de fondu */
         .header-bg-carousel {
             position: absolute;
             top: 0;
@@ -73,7 +116,6 @@
             pointer-events: none;
         }
 
-        /* Voile transparent de protection pour détacher le texte */
         .header-overlay {
             position: absolute;
             top: 0;
@@ -85,13 +127,11 @@
             pointer-events: none;
         }
 
-        /* Contenu du header au premier plan */
         .header-content {
             position: relative;
             z-index: 4;
         }
 
-        /* Styles du logo SVG */
         .logo-container {
             width: 105px;
             height: 105px;
@@ -149,6 +189,13 @@
             header h1 .title-cross {
                 font-size: 2.5rem;
             }
+            .nav-container {
+                gap: 18px;
+            }
+            .nav-link {
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
         }
 
         h2.section-title {
@@ -162,6 +209,7 @@
             padding-bottom: 15px;
             font-weight: 700;
             text-shadow: 0 0 20px rgba(229, 184, 105, 0.2);
+            scroll-margin-top: 90px;
         }
 
         h2.section-title::after {
@@ -237,7 +285,6 @@
             object-fit: cover;
         }
 
-        /* Carrousels de transition */
         .section-carousel-wrapper {
             max-width: 650px;
             margin: 0 auto 60px auto;
@@ -322,7 +369,6 @@
             font-weight: 700;
         }
 
-        /* Grilles initialement cachées */
         .expandable-grid-container {
             display: none;
             opacity: 0;
@@ -405,7 +451,6 @@
             font-weight: 700;
         }
 
-        /* Modale Plein Écran */
         .modal {
             display: none;
             position: fixed;
@@ -479,12 +524,12 @@
             text-shadow: 0 0 10px rgba(229, 184, 105, 0.6);
         }
 
-        /* SECTION CONTACT & FOOTER MODERNISÉS */
         #contact {
             text-align: center;
             padding: 60px 20px;
             max-width: 700px;
             margin: 80px auto 40px auto;
+            scroll-margin-top: 90px;
         }
 
         #contact h2 {
@@ -571,8 +616,17 @@
 </head>
 <body>
 
+    <!-- BANDEROLE DE NAVIGATION -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a class="nav-link" onclick="window.navigateToSection('gallery')">Gallery</a>
+            <a class="nav-link" onclick="window.navigateToSection('muse')">Muse</a>
+            <a class="nav-link" onclick="window.navigateToSection('melodies')">Melodies</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
     <header>
-        <!-- Carrousel header -->
         <div class="header-bg-carousel" id="headerCarouselContainer">
             <div class="header-video-slide">
                 <iframe id="headerVideoIframe" src="" title="Background Video" allow="autoplay"></iframe>
@@ -581,7 +635,6 @@
         <div class="header-overlay"></div>
 
         <div class="header-content">
-            <!-- Logo SVG -->
             <div class="logo-container">
                 <svg viewBox="0 0 200 200" class="logo-svg">
                     <circle cx="100" cy="100" r="92" fill="#151D18" stroke="#E5B869" stroke-width="4" />
@@ -600,10 +653,10 @@
 
     <main>
         <!-- 1. GALLERY -->
-        <h2 class="section-title">Gallery</h2>
+        <h2 class="section-title" id="gallery">Gallery</h2>
 
         <div class="section-carousel-wrapper" id="galleryCarouselWrapper">
-            <div class="section-slider-container" onclick="expandSection('gallery')">
+            <div class="section-slider-container" onclick="window.expandSection('gallery')">
                 <div class="section-slider-track" id="gallerySliderTrack">
                     <div class="section-slide">
                         <img src="images/parisincharcoal.webp" alt="Paris, France.">
@@ -626,11 +679,11 @@
         </div>
 
         <div class="section-reset-container" id="galleryResetContainer">
-            <button class="btn-reset-section" onclick="collapseSection('gallery')">← Back to view</button>
+            <button class="btn-reset-section" onclick="window.collapseSection('gallery')">← Back to view</button>
         </div>
 
         <div class="gallery expandable-grid-container" id="galleryGridContainer">
-            <div class="art-card" onclick="openMediaModal(['images/parisincharcoal.webp', 'images/parisincharcoal0.webp'], '54MUKdySTtY')">
+            <div class="art-card" onclick="window.openMediaModal(['images/parisincharcoal.webp', 'images/parisincharcoal0.webp'], '54MUKdySTtY')">
                 <div class="media-container">
                     <img src="images/parisincharcoal.webp" alt="Paris in Charcoal">
                 </div>
@@ -638,7 +691,7 @@
                     <h3>Paris, France.</h3>
                 </div>
             </div>
-            <div class="art-card" onclick="openMediaModal(['images/AYABA.webp'], 'WpwQZnRyEyo')">
+            <div class="art-card" onclick="window.openMediaModal(['images/AYABA.webp'], 'WpwQZnRyEyo')">
                 <div class="media-container">
                     <img src="images/AYABA.webp" alt="AYABA">
                 </div>
@@ -646,7 +699,7 @@
                     <h3>AYABA</h3>
                 </div>
             </div>
-            <div class="art-card" onclick="openMediaModal(['images/vicday.webp', 'images/vicnight.webp', 'images/vicp.webp'], 'jsv6it0YfJo')">
+            <div class="art-card" onclick="window.openMediaModal(['images/vicday.webp', 'images/vicnight.webp', 'images/vicp.webp'], 'jsv6it0YfJo')">
                 <div class="media-container">
                     <img src="images/vicday.webp" alt="Placa Major, Vic, Spain.">
                 </div>
@@ -654,7 +707,7 @@
                     <h3>Placa Major, Vic, Spain.</h3>
                 </div>
             </div>
-            <div class="art-card" onclick="openMediaModal(['images/strugglefull.webp'])">
+            <div class="art-card" onclick="window.openMediaModal(['images/strugglefull.webp'])">
                 <div class="media-container">
                     <img src="images/strugglefull.webp" alt="Struggle">
                 </div>
@@ -665,10 +718,10 @@
         </div>
 
         <!-- 2. MUSE -->
-        <h2 class="section-title">Muse</h2>
+        <h2 class="section-title" id="muse">Muse</h2>
         
         <div class="section-carousel-wrapper" id="museCarouselWrapper">
-            <div class="section-slider-container" onclick="expandSection('muse')">
+            <div class="section-slider-container" onclick="window.expandSection('muse')">
                 <div class="section-slider-track" id="museSliderTrack">
                     <div class="section-slide">
                         <img src="images/motherland.webp" alt="Act I">
@@ -687,11 +740,11 @@
         </div>
 
         <div class="section-reset-container" id="museResetContainer">
-            <button class="btn-reset-section" onclick="collapseSection('muse')">← Back to view</button>
+            <button class="btn-reset-section" onclick="window.collapseSection('muse')">← Back to view</button>
         </div>
 
         <div class="gallery expandable-grid-container" id="museGridContainer">
-            <div class="art-card" onclick="openMediaModal(['images/motherland.webp', 'images/motherland3.webp', 'images/motherland4.webp', 'images/motherland2.webp'])">
+            <div class="art-card" onclick="window.openMediaModal(['images/motherland.webp', 'images/motherland3.webp', 'images/motherland4.webp', 'images/motherland2.webp'])">
                 <div class="media-container">
                     <img src="images/motherland.webp" alt="Act I">
                 </div>
@@ -699,7 +752,7 @@
                     <h3>I</h3>
                 </div>
             </div>
-            <div class="art-card" onclick="openMediaModal(['images/Intentional.webp'], 'zUaiObvl9zk')">
+            <div class="art-card" onclick="window.openMediaModal(['images/Intentional.webp'], 'zUaiObvl9zk')">
                 <div class="media-container">
                     <img src="images/Intentional.webp" alt="Act II">
                 </div>
@@ -707,7 +760,7 @@
                     <h3>II</h3>
                 </div>
             </div>
-            <div class="art-card" onclick="openMediaModal(['images/mymotherportrait.webp', 'images/mymother.webp', 'images/mymother1.webp'], 'N1ZUNsGl5J8')">
+            <div class="art-card" onclick="window.openMediaModal(['images/mymotherportrait.webp', 'images/mymother.webp', 'images/mymother1.webp'], 'N1ZUNsGl5J8')">
                 <div class="media-container">
                     <img src="images/mymotherportrait.webp" alt="Act III">
                 </div>
@@ -718,10 +771,10 @@
         </div>
 
         <!-- 3. MELODIES -->
-        <h2 class="section-title">Melodies</h2>
+        <h2 class="section-title" id="melodies">Melodies</h2>
 
         <div class="section-carousel-wrapper" id="melodiesCarouselWrapper">
-            <div class="section-slider-container" onclick="expandSection('melodies')">
+            <div class="section-slider-container" onclick="window.expandSection('melodies')">
                 <div class="section-slider-track" id="melodiesSliderTrack">
                     <div class="section-slide">
                         <div class="video-wrapper" style="pointer-events: none; opacity: 0.85;">
@@ -746,7 +799,7 @@
         </div>
 
         <div class="section-reset-container" id="melodiesResetContainer">
-            <button class="btn-reset-section" onclick="collapseSection('melodies')">← Back to view</button>
+            <button class="btn-reset-section" onclick="window.collapseSection('melodies')">← Back to view</button>
         </div>
 
         <div class="gallery expandable-grid-container" id="melodiesGridContainer">
@@ -780,7 +833,6 @@
         <a href="mailto:deciphart@gmail.com" class="btn-contact">Contact Me</a>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <a href="https://instagram.com/deciphart" target="_blank" class="social-link">
             <svg viewBox="0 0 24 24">
@@ -793,22 +845,22 @@
         </div>
     </footer>
 
-    <!-- FENÊTRE MODALE -->
-    <div id="mediaModal" class="modal" onclick="closeMediaModal()">
-        <span class="close-modal" onclick="closeMediaModal()">&times;</span>
+    <div id="mediaModal" class="modal" onclick="window.closeMediaModal()">
+        <span class="close-modal" onclick="window.closeMediaModal()">&times;</span>
         <div class="modal-box" onclick="event.stopPropagation()">
-            <button class="nav-btn prev" id="modalPrevBtn" onclick="moveModalSlide(-1)">&#10094;</button>
+            <button class="nav-btn prev" id="modalPrevBtn" onclick="window.moveModalSlide(-1)">&#10094;</button>
             <div class="modal-track" id="modalTrack"></div>
-            <button class="nav-btn next" id="modalNextBtn" onclick="moveModalSlide(1)">&#10095;</button>
+            <button class="nav-btn next" id="modalNextBtn" onclick="window.moveModalSlide(1)">&#10095;</button>
         </div>
     </div>
 
     <script>
-        // Gestion de l'affichage des grilles et des carrousels de sections
-        function expandSection(sectionName) {
+        window.expandSection = function(sectionName) {
             const wrapper = document.getElementById(sectionName + 'CarouselWrapper');
             const grid = document.getElementById(sectionName + 'GridContainer');
             const resetContainer = document.getElementById(sectionName + 'ResetContainer');
+
+            if (!wrapper || !grid || !resetContainer) return;
 
             wrapper.style.opacity = '0';
             setTimeout(() => {
@@ -816,12 +868,14 @@
                 grid.classList.add('active');
                 resetContainer.classList.add('active');
             }, 300);
-        }
+        };
 
-        function collapseSection(sectionName) {
+        window.collapseSection = function(sectionName) {
             const wrapper = document.getElementById(sectionName + 'CarouselWrapper');
             const grid = document.getElementById(sectionName + 'GridContainer');
             const resetContainer = document.getElementById(sectionName + 'ResetContainer');
+
+            if (!wrapper || !grid || !resetContainer) return;
 
             grid.classList.remove('active');
             resetContainer.classList.remove('active');
@@ -829,13 +883,21 @@
             setTimeout(() => {
                 wrapper.style.opacity = '1';
             }, 50);
-        }
+        };
 
-        // Variables globales pour la modale
+        // Navigation dynamique + Déploiement auto de la grille
+        window.navigateToSection = function(sectionName) {
+            window.expandSection(sectionName);
+            const targetElement = document.getElementById(sectionName);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+
         let currentModalSlides = [];
         let currentModalIndex = 0;
 
-        function openMediaModal(imagesArray, youtubeId = null) {
+        window.openMediaModal = function(imagesArray, youtubeId = null) {
             currentModalSlides = [];
             
             if (imagesArray && imagesArray.length > 0) {
@@ -849,11 +911,12 @@
             renderModalSlides();
             
             const modal = document.getElementById('mediaModal');
-            modal.style.display = 'flex';
-        }
+            if (modal) modal.style.display = 'flex';
+        };
 
         function renderModalSlides() {
             const track = document.getElementById('modalTrack');
+            if (!track) return;
             track.innerHTML = '';
 
             currentModalSlides.forEach(slide => {
@@ -877,7 +940,7 @@
             updateModalView();
         }
 
-        function moveModalSlide(direction) {
+        window.moveModalSlide = function(direction) {
             currentModalIndex += direction;
             if (currentModalIndex < 0) {
                 currentModalIndex = currentModalSlides.length - 1;
@@ -885,32 +948,34 @@
                 currentModalIndex = 0;
             }
             updateModalView();
-        }
+        };
 
         function updateModalView() {
             const track = document.getElementById('modalTrack');
+            if (!track) return;
             track.style.transform = `translateX(-${currentModalIndex * 100}%)`;
 
             const prevBtn = document.getElementById('modalPrevBtn');
             const nextBtn = document.getElementById('modalNextBtn');
 
-            if (currentModalSlides.length > 1) {
-                prevBtn.style.display = 'flex';
-                nextBtn.style.display = 'flex';
-            } else {
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
+            if (prevBtn && nextBtn) {
+                if (currentModalSlides.length > 1) {
+                    prevBtn.style.display = 'flex';
+                    nextBtn.style.display = 'flex';
+                } else {
+                    prevBtn.style.display = 'none';
+                    nextBtn.style.display = 'none';
+                }
             }
         }
 
-        function closeMediaModal() {
+        window.closeMediaModal = function() {
             const modal = document.getElementById('mediaModal');
-            modal.style.display = 'none';
+            if (modal) modal.style.display = 'none';
             const track = document.getElementById('modalTrack');
-            track.innerHTML = ''; // Arrête la lecture des vidéos de la modale à la fermeture
-        }
+            if (track) track.innerHTML = '';
+        };
 
-        // Playlist carrousel header et initialisation automatique des carrousels de sections
         document.addEventListener("DOMContentLoaded", function() {
             const playlist = [
                 { id: "jsv6it0YfJo", duration: 20000 },
@@ -922,6 +987,7 @@
             const container = document.getElementById("headerCarouselContainer");
 
             function runCarousel() {
+                if (!iframe || !container) return;
                 const currentItem = playlist[currentIndex];
                 iframe.src = `https://www.youtube.com/embed/${currentItem.id}?autoplay=1&mute=1&loop=1&playlist=${currentItem.id}&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3`;
 
@@ -935,15 +1001,22 @@
                 }, currentItem.duration);
             }
 
-            runCarousel();
+            try {
+                runCarousel();
+            } catch(e) {
+                console.warn("Autoplay restreint", e);
+            }
 
             function initSectionCarousel(trackId, gridId) {
                 const track = document.getElementById(trackId);
+                const grid = document.getElementById(gridId);
+                if (!track || !grid) return;
+                
                 const totalSlides = track.children.length;
                 let currentSlideIndex = 0;
 
                 setInterval(() => {
-                    if (document.getElementById(gridId).classList.contains('active')) return;
+                    if (grid.classList.contains('active')) return;
                     currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
                     track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
                 }, 4000);
